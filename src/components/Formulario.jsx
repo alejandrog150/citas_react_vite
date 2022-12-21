@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import Error from './Error';
+import addButton from '../img/add-button.svg'
+import editButton from '../img/edit-button.svg'
 
 const Formulario = ({ pacientes, setPacientes, paciente, setPaciente }) => {
   const [nombre, setNombre] = useState('');
@@ -84,29 +86,24 @@ const Formulario = ({ pacientes, setPacientes, paciente, setPaciente }) => {
         </p>
       </div>
 
-      <div className="md:flex-grow md:flex-shrink md:overflow-hidden">
+      <div className="md:flex-grow md:flex-shrink md:overflow-hidden pb-2">
         <form
           onSubmit={handleSubmit}
-          className="bg-white shadow-md rounded-lg px-5 py-2 mb-10 h-full overflow-y-scroll">
+          className="bg-white shadow-md rounded-lg px-4 py-2 h-full overflow-y-scroll">
 
           <div className="flex justify-end">
             <button className="mt-2 mx-3" style={{ height: 45, width: 45 }} type="submit" value={paciente.id ? 'Editar Paciente' : 'Agregar Paciente'}>
-              {paciente.id == null &&
-                <svg viewBox="0 0 27.963 27.963">
-                  <path fill="#4F46E5" d="M13.98,0C6.259,0,0,6.26,0,13.982s6.259,13.981,13.98,13.981c7.725,0,13.983-6.26,13.983-13.981
-			C27.963,6.26,21.705,0,13.98,0z M21.102,16.059h-4.939v5.042h-4.299v-5.042H6.862V11.76h5.001v-4.9h4.299v4.9h4.939v4.299H21.102z" />
-                </svg>}
-              {paciente.id &&
-                <svg viewBox="0 0 15 15">
-                  <path fill="#4F46E5" fillRule="evenodd" clipRule="evenodd"
-                    d="M0 7.5C0 3.35786 3.35786 0 7.5 0C11.6421 0 15 3.35786 15 7.5C15 11.6421 11.6421 15 7.5 15C3.35786 15 0 11.6421 0 7.5ZM8.14645 4.14645C8.34171 3.95118 8.65829 3.95118 8.85355 4.14645L10.8536 6.14645C11.0488 6.34171 11.0488 6.65829 10.8536 6.85355L6.70711 11H4.5C4.22386 11 4 10.7761 4 10.5V8.29289L8.14645 4.14645Z" />
-                </svg>}
+              {paciente.id == null ? (
+                <img src={addButton} alt="Agregar Paciente" />
+              ) : (
+                <img src={editButton} alt="Agregar Paciente" />
+              )
+              }
             </button>
-
           </div>
 
-
           {error && <Error><p>Faltan Datos</p></Error>}
+          
           <div className="mb-3">
             <label htmlFor="mascota" className="block text-gray-700 uppercase font-bold">
               Nombre Mascota
@@ -167,17 +164,17 @@ const Formulario = ({ pacientes, setPacientes, paciente, setPaciente }) => {
               onChange={(e) => setNotas(e.target.value)} />
           </div>
 
-          {/* <input type="submit" value={paciente.id ? 'Editar Paciente' : 'Agregar Paciente'}
+          <input type="submit" value={paciente.id ? 'Editar Paciente' : 'Agregar Paciente'}
             className="bg-indigo-600 w-full p-3 text-white uppercase font-bold 
-        hover:bg-indigo-700 cursor-pointer transition-all"/> */}
+        hover:bg-indigo-700 cursor-pointer transition-all"/>
         </form>
 
-      </div>
+      </div >
 
 
 
 
-    </div>
+    </div >
   )
 }
 
